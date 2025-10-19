@@ -16,7 +16,7 @@ class ColaSolicitudes:
         Representa el ingreso de solicitudes normales en el orden en que
         los estudiantes las envían.
         """
-        self.list.addLast(data)
+        self.list.agregarUltimo(data)
 
     def dequeue(self):
         """
@@ -24,17 +24,17 @@ class ColaSolicitudes:
         Simula la atención de la solicitud más antigua registrada,
         cumpliendo el principio FIFO.
         """
-        return self.list.removeFirst()
+        return self.list.eliminarPrimero()
 
     def estaVacio(self):
-        return self.list.isEmpty()
+        return self.list.estaVacio()
     
     def mostrar(self):
         """
         Muestra el contenido actual de la cola utilizando
-        el método showAll() de la clase Lista.
+        el método mostrar() de la clase Lista.
         """
         print("Contenido de la cola:")
-        self.list.showAll()
+        self.list.mostrar()
 
 

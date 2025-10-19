@@ -22,7 +22,7 @@ class List:
         en el registro de solicitudes urgentes o cancelaciones.
         """
         new_node = Nodo(data)
-        if self.isEmpty():
+        if self.estaVacio():
             self.head = self.tail = new_node
         else:
             new_node.setNext(self.head)
@@ -36,7 +36,7 @@ class List:
         en el registro de solicitudes normales.
         """
         new_node = Nodo(data)
-        if self.isEmpty():
+        if self.estaVacio():
             self.head = self.tail = new_node
         else:
             self.tail.setNext(new_node)
@@ -49,7 +49,7 @@ class List:
         Permite extraer elementos de pilas o colas respetando
         el orden correspondiente (LIFO o FIFO).
         """
-        if self.isEmpty():
+        if self.estaVacio():
             raise Exception("Lista vacía")
         data = self.head.getData()
         self.head = self.head.getNext()
@@ -70,7 +70,7 @@ class List:
         posición exacta, cumpliendo el requerimiento de incluir
         procedimientos de búsqueda y eliminación por valor de atributo :emoji con gafas:.
         """
-        if self.isEmpty():
+        if self.estaVacio():
             return False
         current = self.head
         prev = None
