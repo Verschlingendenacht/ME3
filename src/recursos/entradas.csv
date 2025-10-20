@@ -1,0 +1,21 @@
+estudiante,materia,fecha,tipo,prioridad
+Carlos Gómez,Matemáticas,2025-10-20,normal,1
+María López,Física,2025-10-22,urgente,3
+Andrés Pérez,Química,2025-10-21,normal,2
+Luisa Fernández,Biología,2025-10-19,urgente,4
+Julián Vélez,Programación,2025-10-23,normal,1
+Camila Torres,Historia,2025-10-25,normal,2
+Felipe Rojas,Inglés,2025-10-24,urgente,5
+Daniela Muñoz,Literatura,2025-10-26,normal,1
+Esteban Ramírez,Filosofía,2025-10-28,urgente,3
+Valentina Ruiz,Geometría,2025-10-27,normal,2
+Santiago Pérez,Álgebra,2025-10-21,urgente,4
+Laura Sánchez,Estadística,2025-10-29,normal,1
+David Morales,Física,2025-10-20,urgente,2
+Isabella Herrera,Química,2025-10-22,normal,3
+Tomás Castaño,Biología,2025-10-19,urgente,5
+Sara Jiménez,Arte,2025-10-25,normal,2
+Mateo Rodríguez,Programación,2025-10-24,urgente,4
+Nicolás Castro,Lógica,2025-10-28,normal,1
+Paula Gutiérrez,Matemáticas,2025-10-23,urgente,3
+Juan Esteban López,Sociología,2025-10-27,normal,2
