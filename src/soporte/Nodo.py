@@ -7,7 +7,7 @@ class Nodo:
     Utilizada por las estructuras List, PilaSolicitudes y ColaSolicitudes.
     """
 
-    def __init__(self, data):
+    def __init__(self, data=None):
         """
         Constructor del nodo.
         Inicializa el dato almacenado y la referencia al siguiente nodo.

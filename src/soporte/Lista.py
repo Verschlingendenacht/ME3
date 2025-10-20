@@ -12,44 +12,56 @@ class List:
         self.tail = None
         self.size = 0
 
-    def estaVacio(self):
-        return self.head is None
+    def size(self):
+        return self.size
 
-    def agregarPrimero(self, data):
+    def isEmpty(self):
+        return self.head is None
+    
+    def setSize(self, s):
+        self.size == s
+
+    def first(self):
+        return self.head
+    
+    def last(self):
+        return self.tail
+
+    def addFirst(self, data):
         """
         Inserta un nuevo nodo al inicio de la lista.
         Utilizado por la pila (Stack) para aplicar el comportamiento LIFO
         en el registro de solicitudes urgentes.
         """
-        new_node = Nodo(data)
-        if self.estaVacio():
-            self.head = self.tail = new_node
+        n = Nodo(data)
+        if self.isEmpty():
+            self.head = self.tail = n
         else:
-            new_node.setNext(self.head)
-            self.head = new_node
+            n.setNext(self.head)
+            self.head = n
         self.size += 1
 
-    def agregarUltimo(self, data):
+    def addLast(self, data):
         """
         Inserta un nuevo nodo al final de la lista.
         Utilizado por la cola (Queue) para aplicar el comportamiento FIFO
         en el registro de solicitudes normales.
         """
-        new_node = Nodo(data)
-        if self.estaVacio():
-            self.head = self.tail = new_node
+        n = Nodo(data)
+        if self.isEmpty():
+            self.head = self.tail = n
         else:
-            self.tail.setNext(new_node)
-            self.tail = new_node
+            self.tail.setNext(n)
+            self.tail = n
         self.size += 1
 
-    def eliminarPrimero(self):
+    def removeFirst(self):
         """
         Elimina y retorna el primer nodo de la lista.
         Permite extraer elementos de pilas o colas respetando
         el orden correspondiente (LIFO o FIFO).
         """
-        if self.estaVacio():
+        if self.isEmpty():
             raise Exception("Lista vacía")
         data = self.head.getData()
         self.head = self.head.getNext()
@@ -57,6 +69,24 @@ class List:
         if self.size == 0:
             self.tail = None
         return data
+    
+    def removeLast(self):
+        if self.size==1:
+            self.removeFirst()
+        elif self.size >1:
+            temp = Nodo()
+            temp = self.tail
+            anterior = Nodo()
+            anterior = self.head
+            while(anterior.getNext()!=self.tail):
+                anterior = anterior.getNext()
+            anterior.setNext(None)
+            self.tail = anterior
+            self.size -= 1
+            return temp.getData()
+        else:
+            return None
+
 
     def eliminarPorAtributo(self, attr, value):
         """
