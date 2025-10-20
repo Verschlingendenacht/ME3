@@ -3,6 +3,9 @@ from PilaSolicitudes import PilaSolicitudes
 from Solicitud import Solicitud
 from soporte.List import List
 from soporte.Node import Node
+import csv
+
+#No sera el mejor front-end peron se hizo el intento con los emojis 😭
 
 class GestorTutorias:
     """
@@ -20,25 +23,33 @@ class GestorTutorias:
     # ------------------------------------------------------------
     def cargar_desde_archivo(self, archivo):
         """
-        Carga solicitudes desde un archivo CSV.
-        
-        Args:
-            archivo (str): Ruta al archivo CSV con formato:
-                estudiante,materia,fecha,tipo,prioridad
+        Carga solicitudes desde un archivo CSV y las inserta en la estructura correspondiente.
+        Captura errores si el archivo no existe o tiene formato incorrecto.
         """
-        import csv
-        with open(archivo, 'r', encoding='utf-8') as file:
-            reader = csv.reader(file)
-            next(reader)  # Skip header row
-            for row in reader:
-                if len(row) == 5:
-                    estudiante, materia, fecha, tipo, prioridad = row
-                    try:
-                        solicitud = Solicitud(estudiante, materia, fecha, tipo, int(prioridad))
-                        self.registrar_solicitud(solicitud)
-                    except ValueError as e:
-                        print(f"Error al procesar fila: {row}")
-                        print(f"Error: {e}")
+        try:
+            with open(archivo, 'r', encoding='utf-8') as file:
+                lector = csv.DictReader(file)
+                for fila in lector:
+                    # Se espera que el CSV tenga columnas: estudiante,materia,fecha,tipo,prioridad
+                    solicitud = Solicitud(
+                        fila['estudiante'],
+                        fila['materia'],
+                        fila['fecha'],
+                        fila.get('tipo', 'normal'),
+                        int(fila.get('prioridad', 1))
+                    )
+                    self.registrar_solicitud(solicitud)
+            print(f"✅ Archivo '{archivo}' cargado correctamente.")
+        
+        except FileNotFoundError:
+            print(f"❌ Error: El archivo '{archivo}' no existe. Verifica la ruta o el nombre.")
+        
+        except KeyError as e:
+            print(f"❌ Error: Falta la columna {e} en el archivo CSV.")
+        
+        except Exception as e:
+            print(f"⚠️ Error inesperado al cargar el archivo: {e}")
+
 
     # ------------------------------------------------------------
     # 2. Registrar una solicitud (normal o urgente)
@@ -47,11 +58,12 @@ class GestorTutorias:
         """
         Determina si la solicitud va a la cola o a la pila según su tipo.
         """
-        if solicitud.tipo.lower() == "urgente":
+        if solicitud.tipo == "normal":
+            self.cola_normal.enqueue(solicitud)
+        elif solicitud.tipo == "urgente":
             self.pila_urgente.push(solicitud)
         else:
-            self.cola_normal.enqueue(solicitud)
-        print(f"📥 Solicitud registrada: {solicitud}")
+            raise ValueError(f"Tipo de solicitud no válido: '{solicitud.tipo}'. Debe ser 'normal' o 'urgente'.")
 
     # ------------------------------------------------------------
     # 3. Procesar una solicitud (atender)

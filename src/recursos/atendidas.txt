@@ -1,2 +1,0 @@
-Carlos Ruiz,Programación II,2025-10-20,urgente,1
-Paula Gutiérrez,Matemáticas,2025-10-23,urgente,3
