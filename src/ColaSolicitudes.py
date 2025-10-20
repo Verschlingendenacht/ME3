@@ -14,8 +14,7 @@ class ColaSolicitudes:
         return self.data.size
     
     def isEmpty(self):
-        print("metodo isempty cola")
-        return self.data.size == 0
+        return self.data.isEmpty()
 
     def enqueue(self, data):
         """
@@ -32,9 +31,6 @@ class ColaSolicitudes:
         cumpliendo el principio FIFO.
         """
         return self.data.removeFirst()
-
-    def isEmpty(self):
-        return self.data.isEmpty()
     
     def mostrar(self):
         """
@@ -43,5 +39,3 @@ class ColaSolicitudes:
         """
         print("Contenido de la cola:")
         self.data.mostrar()
-
-#nos falta eliminar por nombre y ordenar por prioridad
