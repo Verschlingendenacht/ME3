@@ -1,4 +1,4 @@
-from src.soporte import Lista
+from soporte.List import List
 
 #========= ColaSolicitudes.py ==========
 class ColaSolicitudes:
@@ -8,7 +8,14 @@ class ColaSolicitudes:
     Utilizada para gestionar solicitudes normales en orden de llegada.
     """
     def __init__(self):
-        self.list = Lista()
+        self.data = List()
+
+    def size(self):
+        return self.data.size
+    
+    def isEmpty(self):
+        print("metodo isempty cola")
+        return self.data.size == 0
 
     def enqueue(self, data):
         """
@@ -16,7 +23,7 @@ class ColaSolicitudes:
         Representa el ingreso de solicitudes normales en el orden en que
         los estudiantes las envían.
         """
-        self.list.agregarUltimo(data)
+        self.data.addLast(data)
 
     def dequeue(self):
         """
@@ -24,10 +31,10 @@ class ColaSolicitudes:
         Simula la atención de la solicitud más antigua registrada,
         cumpliendo el principio FIFO.
         """
-        return self.list.eliminarPrimero()
+        return self.data.removeFirst()
 
-    def estaVacio(self):
-        return self.list.estaVacio()
+    def isEmpty(self):
+        return self.data.isEmpty()
     
     def mostrar(self):
         """
@@ -35,6 +42,6 @@ class ColaSolicitudes:
         el método mostrar() de la clase Lista.
         """
         print("Contenido de la cola:")
-        self.list.mostrar()
+        self.data.mostrar()
 
 #nos falta eliminar por nombre y ordenar por prioridad

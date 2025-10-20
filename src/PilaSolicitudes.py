@@ -1,6 +1,6 @@
 #pa las urgencias
 
-from src.soporte import Lista
+from soporte import List
 
 class PilaSolicitudes:
     """
@@ -8,7 +8,7 @@ class PilaSolicitudes:
     Utilizada para manejar solicitudes urgentes dentro del sistema de tutorías.
     """
     def __init__(self):
-        self.list = Lista()
+        self.list = List()
 
     def estaVacio(self):
         """

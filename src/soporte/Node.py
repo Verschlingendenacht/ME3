@@ -1,5 +1,5 @@
 # ========= Nodo.py ==========
-class Nodo:
+class Node:
     """
     Clase Nodo.
     Representa una unidad básica de una lista enlazada simple.

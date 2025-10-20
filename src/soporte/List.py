@@ -1,4 +1,4 @@
-from src.soporte import Nodo
+from soporte.Node import Node
 
 # ======== Lista.py ==========
 class List:
@@ -10,16 +10,18 @@ class List:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.size = 0
+        self._size = 0
 
+    @property
     def size(self):
-        return self.size
+        return self._size
+    
+    @size.setter
+    def size(self, s):
+        self._size = s
 
     def isEmpty(self):
         return self.head is None
-    
-    def setSize(self, s):
-        self.size == s
 
     def first(self):
         return self.head
@@ -33,13 +35,13 @@ class List:
         Utilizado por la pila (Stack) para aplicar el comportamiento LIFO
         en el registro de solicitudes urgentes.
         """
-        n = Nodo(data)
+        n = Node(data)
         if self.isEmpty():
             self.head = self.tail = n
         else:
             n.setNext(self.head)
             self.head = n
-        self.size += 1
+        self._size += 1
 
     def addLast(self, data):
         """
@@ -47,13 +49,13 @@ class List:
         Utilizado por la cola (Queue) para aplicar el comportamiento FIFO
         en el registro de solicitudes normales.
         """
-        n = Nodo(data)
+        n = Node(data)
         if self.isEmpty():
             self.head = self.tail = n
         else:
             self.tail.setNext(n)
             self.tail = n
-        self.size += 1
+        self._size += 1
 
     def removeFirst(self):
         """
@@ -65,24 +67,22 @@ class List:
             raise Exception("Lista vacía")
         data = self.head.getData()
         self.head = self.head.getNext()
-        self.size -= 1
-        if self.size == 0:
+        self._size -= 1
+        if self._size == 0:
             self.tail = None
         return data
     
     def removeLast(self):
-        if self.size==1:
-            self.removeFirst()
-        elif self.size >1:
-            temp = Nodo()
-            temp = self.tail
-            anterior = Nodo()
+        if self._size == 1:
+            return self.removeFirst()
+        elif self._size > 1:
             anterior = self.head
-            while(anterior.getNext()!=self.tail):
+            while anterior.getNext() is not self.tail:
                 anterior = anterior.getNext()
+            temp = self.tail
             anterior.setNext(None)
             self.tail = anterior
-            self.size -= 1
+            self._size -= 1
             return temp.getData()
         else:
             return None
@@ -100,12 +100,11 @@ class List:
         posición exacta, cumpliendo el requerimiento de incluir
         procedimientos de búsqueda y eliminación por valor de atributo :emoji con gafas:.
         """
-        if self.estaVacio():
+        if self.isEmpty():
             return False
         current = self.head
         prev = None
         while current is not None:
-            # Verifica si el atributo coincide (ej: solicitud.estudiante == "Julian Vélez")
             if getattr(current.getData(), attr) == value:
                 if prev is None:
                     self.head = current.getNext()
@@ -113,7 +112,7 @@ class List:
                     prev.setNext(current.getNext())
                 if current == self.tail:
                     self.tail = prev
-                self.size -= 1
+                self._size -= 1
                 return True
             prev = current
             current = current.getNext()
@@ -124,6 +123,7 @@ class List:
         current = self.head
         if current is None:
             print(" (vacía)")
+            return
         while current is not None:
             print(current.getData())
             current = current.getNext()
