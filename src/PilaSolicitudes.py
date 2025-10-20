@@ -5,8 +5,7 @@ from src.soporte import Lista
 class PilaSolicitudes:
     """
     Implementa una pila (LIFO) basada en una lista simple enlazada.
-    Utilizada para manejar solicitudes urgentes o cancelaciones
-    dentro del sistema de tutorías.
+    Utilizada para manejar solicitudes urgentes dentro del sistema de tutorías.
     """
     def __init__(self):
         self.list = Lista()
@@ -45,7 +44,6 @@ class PilaSolicitudes:
     def eliminarPorAtributo(self, attr, value):
         """
         Elimina una solicitud de la pila cuyo atributo coincide con el valor especificado.
-        Por ejemplo, eliminar una cancelación asociada a un estudiante.
         """
         eliminado = self.list.eliminarPorAtributo(attr, value)
         if eliminado:

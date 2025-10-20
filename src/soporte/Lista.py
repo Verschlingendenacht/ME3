@@ -19,7 +19,7 @@ class List:
         """
         Inserta un nuevo nodo al inicio de la lista.
         Utilizado por la pila (Stack) para aplicar el comportamiento LIFO
-        en el registro de solicitudes urgentes o cancelaciones.
+        en el registro de solicitudes urgentes.
         """
         new_node = Nodo(data)
         if self.estaVacio():
@@ -64,8 +64,8 @@ class List:
         igual al valor 'value'.
 
         Este método es fundamental para el sistema, ya que permite
-        eliminar solicitudes específicas de la cola cuando un estudiante cancela
-        su tutoría. La búsqueda por atributo (tipo 'estudiante') asegura que el
+        eliminar solicitudes específicas de la cola (por ejemplo, si el programa tuviese dicha extension, facilitar la cancelacion de tutorias).
+        La búsqueda por atributo (tipo 'estudiante') asegura que el
         sistema pueda ubicar y retirar dinámicamente una solicitud sin conocer su
         posición exacta, cumpliendo el requerimiento de incluir
         procedimientos de búsqueda y eliminación por valor de atributo :emoji con gafas:.
