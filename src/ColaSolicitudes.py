@@ -37,4 +37,4 @@ class ColaSolicitudes:
         print("Contenido de la cola:")
         self.list.mostrar()
 
-
+#nos falta eliminar por nombre y ordenar por prioridad
